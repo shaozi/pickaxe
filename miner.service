@@ -1,0 +1,14 @@
+[Unit]
+Description=Ethereum Miner
+After=network.target geth.service
+Requires=geth.service nvtune.service
+
+[Service]
+ExecStart=/home/jingshaochen/bin/ethminer -U
+Restart=always
+User=jingshaochen
+Group=jingshaochen
+Environment=TERM=xterm-256color
+
+[Install]
+WantedBy=multi-user.target

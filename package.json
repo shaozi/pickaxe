@@ -1,0 +1,16 @@
+{
+  "name": "pickaxe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "check.js",
+  "dependencies": {
+    "web3": "^1.0.0-beta.22"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

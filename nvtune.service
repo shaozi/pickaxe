@@ -1,0 +1,14 @@
+[Unit]
+Description=Nvidia tune clock
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/jingshaochen/pickaxe/nvtune.sh
+WorkingDirectory=/home/jingshaochen/pickaxe
+User=root
+Environment=TERM=xterm-256color
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=miner.service

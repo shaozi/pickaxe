@@ -1,0 +1,14 @@
+[Unit]
+Description=Ethereum Geth Client
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/geth --rpc
+Restart=always
+User=jingshaochen
+Group=jingshaochen
+Environment=TERM=xterm-256color
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=miner.service
