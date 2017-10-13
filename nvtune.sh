@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MEM_OFFSET=1000
+MEM_OFFSET=1100
 
 echo << EOL
 mem +1400
