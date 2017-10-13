@@ -59,7 +59,7 @@ function check(web3) {
     console.log(`hashrate = ${hashrate}`)
     var delta = hashrate - lastHashrate
     lastHashrate = hashrate
-    if (hashrate == 0 || delta < -20000000) {
+    if (hashrate == 0 || delta < -40000000) {
         
       if (++timeOfRestart >= 5) {
         timeOfRestart = 0

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MEM_OFFSET=1400
+MEM_OFFSET=1100
 
 echo << EOL
 mem +1400
@@ -16,12 +16,15 @@ echo "setting up 1070"
 
 nvidia-smi -pm 1
 echo "limit power"
-nvidia-smi -i 0 -pl 115
+nvidia-smi -i 0 -pl 110
 nvidia-smi -i 1 -pl 110
-nvidia-smi -i 2 -pl 110
+nvidia-smi -i 2 -pl 115
+nvidia-smi -i 3 -pl 110
+nvidia-smi -i 4 -pl 110
+nvidia-smi -i 5 -pl 110
 
 
-for i in $(seq 0 2); do
+for i in $(seq 0 5); do
   echo "setting memory over clock $i to +$MEM_OFFSET"
   DISPLAY=:0 XAUTHORITY=/var/run/lightdm/root/:0 nvidia-settings --assign "[gpu:$i]/GPUGraphicsClockOffset[3]=0" --assign "[gpu:$i]/GPUMemoryTransferRateOffset[3]=$MEM_OFFSET"
 done
