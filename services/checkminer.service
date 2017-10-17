@@ -5,7 +5,7 @@ Requires=geth.service nvtune.service
 Wants=miner.service
 
 [Service]
-ExecStart=/usr/bin/node check.js
+ExecStart=/usr/bin/python check.py
 WorkingDirectory=/home/jingshaochen/pickaxe/
 Restart=always
 User=root

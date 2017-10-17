@@ -3,7 +3,7 @@ Description=Ethereum Geth Client
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/geth --rpc
+ExecStart=/home/jingshaochen/bin/geth --rpc --syncmode fast --cache=1024
 Restart=always
 User=jingshaochen
 Group=jingshaochen
