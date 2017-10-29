@@ -1,6 +1,7 @@
 #!/bin/bash
 
 MEM_OFFSET=1100
+CORE_OFFSET=0
 
 echo << EOL
 mem +1400
@@ -26,5 +27,5 @@ nvidia-smi -i 5 -pl 110
 
 for i in $(seq 0 5); do
   echo "setting memory over clock $i to +$MEM_OFFSET"
-  DISPLAY=:0 XAUTHORITY=/var/run/lightdm/root/:0 nvidia-settings --assign "[gpu:$i]/GPUGraphicsClockOffset[3]=0" --assign "[gpu:$i]/GPUMemoryTransferRateOffset[3]=$MEM_OFFSET"
+  DISPLAY=:0 XAUTHORITY=/var/run/lightdm/root/:0 nvidia-settings --assign "[gpu:$i]/GPUGraphicsClockOffset[3]=$CORE_OFFSET" --assign "[gpu:$i]/GPUMemoryTransferRateOffset[3]=$MEM_OFFSET"
 done
