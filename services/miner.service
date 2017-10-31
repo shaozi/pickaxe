@@ -1,7 +1,7 @@
 [Unit]
 Description=Ethereum Miner
-After=network.target geth.service
-Requires=geth.service nvtune.service
+After=network.target
+Requires=nvtune.service
 
 [Service]
 ExecStart=/home/jingshaochen/bin/ethminer --farm-recheck 3000 -U -S eth-eu1.nanopool.org:9999 -FS eth-eu2.nanopool.org:9999 -O 0x3b862fd6142af29f5321c0993d4bad81e5325080.cjsm1
