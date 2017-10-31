@@ -1,7 +1,7 @@
 [Unit]
 Description=Check and restart Ethereum Miner
-After=network.target geth.service miner.service
-Requires=geth.service nvtune.service
+After=network.target miner.service
+Requires=nvtune.service
 Wants=miner.service
 
 [Service]
