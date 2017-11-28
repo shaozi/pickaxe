@@ -35,6 +35,10 @@ def check_gpus():
         logging.info(line)
         if float(vals[1]) < 100 or int(vals[3]) < 60:
             logging.error(vals)
+        if  float(vals[1]) > 120 or int(vals[3]) > 90:
+            logging.error('CPU too hot, power consumption too high, reboot')
+            logging.error(vals)
+            os.system('reboot')
         else:
             running_gpu_count += 1
     if gpu_count != 0 and running_gpu_count < gpu_count:
@@ -43,12 +47,14 @@ def check_gpus():
     else:
         gpu_count = running_gpu_count
  
-def restart_miner(msg):
+def restart_miner(msg, delay=120):
     global max_hashrate
     global not_match_times
+    subprocess.call(['systemctl', 'stop', 'miner'])
+    time.sleep(delay)
     max_hashrate = 0
     not_match_times = 0
-    subprocess.call(['systemctl', 'restart', 'miner'])
+    subprocess.call(['systemctl', 'start', 'miner'])
     logging.error(msg)
 
 while True:
