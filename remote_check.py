@@ -14,7 +14,7 @@ def log(msg):
 def send_email(subject, text):
     me = 'Jingshao'
     to = 'jingshaochen@gmail.com'
-    msg = MIMEText(text)
+    msg = MIMEText(str(text))
     msg['Subject'] = '[MINER CHECK] ' + subject
     msg['From'] = me
     msg['To'] = to
