@@ -5,14 +5,17 @@ Check hashrate of each worker
 import urllib2
 import json
 import smtplib
+from datetime import datetime
 from email.mime.text import MIMEText
 
+def log(msg):
+    print '%s - %s' % (datetime.now(), msg)
 
 def send_email(subject, text):
     me = 'Jingshao'
     to = 'jingshaochen@gmail.com'
     msg = MIMEText(text)
-    msg['Subject'] = subject
+    msg['Subject'] = '[MINER CHECK] ' + subject
     msg['From'] = me
     msg['To'] = to
     s = smtplib.SMTP('localhost')
@@ -32,19 +35,30 @@ def main():
                           headers={'User-Agent': user_agent})
     connection = urllib2.urlopen(req)
     body = connection.read()
-    result = json.loads(body)
-    workers = result['data']['workers']
-    not_working = ""
-    for worker in workers:
-        print '%s %s' % (worker['id'], worker['hashrate'])
-        if float(worker['hashrate']) == 0:
-            not_working += "worker: %s, hashrate %s\n" % (
-                worker['id'], worker['hashrate'])
+    try:
+        result = json.loads(body)
+        if not result['status']:
+            log(result)
+            send_email('Result error', result)
+            return
+        workers = result['data']['workers']
+        not_working = ""
+        for worker in workers:
+            log('%s %s' % (worker['id'], worker['hashrate']))
+            if float(worker['hashrate']) == 0:
+                not_working += "%s: %s\n" % (
+                    worker['id'], worker['hashrate'])
 
-    if not_working:
-        send_email('Work is down!!!!', not_working)
-    else:
-        print 'Everything is ok!!!'
+        if not_working:
+            log(not_working)
+            send_email('WORKER DOWN!!!!', not_working)
+        else:
+            log('Everything is ok!!!')
+    except Exception as e:
+        log('exeption caught!')
+        log(e)
+        log(body)
+        send_email('Code error!!', e)
 
 if __name__ == '__main__':
     main()
