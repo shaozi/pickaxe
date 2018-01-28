@@ -1,5 +1,8 @@
-#!/usr/bin/python
-
+#!/usr/bin/env python
+"""
+There should be one Intel gpu on motherboard for regular display
+and all other NVIDIA GPU for mining
+"""
 import subprocess
 import re
 
