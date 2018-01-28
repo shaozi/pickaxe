@@ -1,0 +1,7 @@
+{
+  "account": "0x",
+  "poolserver1": "eth-us-east1.nanopool.org:9999",
+  "poolserver2": "eth-us-west1.nanopool.org:9999",
+  "minername": "",
+  "email": ""
+}
