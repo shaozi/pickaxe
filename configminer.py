@@ -95,7 +95,7 @@ def setup_services(miner, config):
     checkminer_service = """
     [Unit]
         Description=Tune then start Ethereum Miner, and check
-        After=network.target miner.service
+        After=network.target
 
     [Service]
         ExecStart=/usr/bin/python check.py
