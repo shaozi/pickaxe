@@ -7,5 +7,6 @@
   "poolserver1": "eth-us-east1.nanopool.org:9999",
   "poolserver2": "eth-us-west1.nanopool.org:9999",
   "server": "http://192.168.1.253:8000",
+  "skipSN": "123ABC",
   "user": "miner"
 }

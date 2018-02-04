@@ -18,7 +18,7 @@ import gen_xorg
 def get_config():
     return json.load(open('config.json'))
 
-def hd_sn():
+def get_hd_sn():
     output = subprocess.check_output(['ls', '/dev/disk/by-id'])
     pattern = re.compile(r'ata.*_([A-Z\d]+)')
     match = pattern.match(output)
@@ -51,7 +51,7 @@ network:
     logging.info('netplan file is updated.')
 
 def change_static_ip():
-    hd_serial = hd_sn()
+    hd_serial = get_hd_sn()
     iphost = get_iphost(hd_serial)
     if iphost > 0:
         update_netplan('192.168.1.{}'.format(iphost))
@@ -149,6 +149,10 @@ def main():
 
 
 if __name__ == "__main__":
+    config = get_config()
+    hd_sn = get_hd_sn()
+    if hd_sn == config['skipSN']:
+        sys.exit(0)
     if os.path.exists('/done'):
         logging.info('done file found. Exist init setup')
         sys.exit(0)
